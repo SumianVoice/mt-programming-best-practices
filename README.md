@@ -5,7 +5,7 @@
 This is the worst coding style. Duplication is everywhere, and you can't extend anything or make general alterations without having to change potentially hundreds of different implementations e.g. mobs.
 ```lua
 local dist2 = function(p1, p2)
-    return ((p1.x - p2.x)^2) + ((p1.z - p2.z)^2) + ((p1.y - p2.y)^2)
+    return (p1.x - p2.x)^2 + (p1.z - p2.z)^2 + (p1.y - p2.y)^2
 end
 mobdef = {
     on_step = function(self, dtime)
