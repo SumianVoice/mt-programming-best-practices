@@ -4,24 +4,27 @@
 ## Direct control
 This is the worst coding style. Duplication is everywhere, and you can't extend anything or make general alterations without having to change potentially hundreds of different implementations e.g. mobs.
 ```lua
+local dist2 = function(p1, p2)
+    return ((p1.x - p2.x)^2) + ((p1.z - p2.z)^2) + ((p1.y - p2.y)^2)
+end
 mobdef = {
     on_step = function(self, dtime)
         local pos = self.object:get_pos()
         if self._target  then
             local tp = self._target:get_pos()
-            if ((pos.x - tp.x)^2) + ((pos.z - tp.z)^2) + ((pos.y - tp.y)^2) > self._viewdistance^2 then
+            if dist2(pos, tp) > self._viewdistance^2 then
                 self._target = nil
             end
         end
         for i, object in ipairs(minetest.get_objects_inside_radius(pos, self._viewdistance)) do
             local tp = object:get_pos()
-            if ((pos.x - tp.x)^2) + ((pos.z - tp.z)^2) + ((pos.y - tp.y)^2) > self._viewdistance^2 then
+            if dist2(pos, tp) > self._viewdistance^2 then
                 self._target = object
             end
         end
         if self._target then
             local tp = self._target:get_pos()
-            if ((pos.x - tp.x)^2) + ((pos.z - tp.z)^2) + ((pos.y - tp.y)^2) > 2 then
+            if dist2(pos, tp) > 2 then
                 local dir = vector.direction(pos, tp)
                 self.object:set_velocity(dir * self._speed)
             end
