@@ -36,6 +36,7 @@ mobdef = {
 ## Everything-is-an-api style
 This is much better since the API controls the basic functionality but the mob still controls how to use that functionality.
 ```lua
+-- mob_api will be a table with many functions in it, and is assumed to just "do what it says on the tin"
 mobdef = {
     on_step = function(self, dtime)
         mob_api.get_target(self)
@@ -54,6 +55,7 @@ mobdef = {
 Better SOMETIMES but not always.
 Keep in mind this style / structure is NOT a replacement for being able to control things directly or use APIs. It is a way to not have to do extra coding and not have redundancy; this cannot exclude the flexibility of extension; it's a helper not a replacement.
 ```lua
+-- mob_api will now also take more actions, assuming behavior based on what you've definedl; the mob_on_step function will branch out and do a lot of different functionality, and there would be the possibility of registering or overriding behaviors as well
 mobdef = {
     _behaviors = {
         follow_players = {min_distance=2},
