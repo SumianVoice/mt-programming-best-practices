@@ -57,7 +57,7 @@ mobdef = {
 ## Declaritive with APIs
 Better SOMETIMES but not always.
 Keep in mind this style / structure is NOT a replacement for being able to control things directly or use APIs. It is a way to not have to do extra coding and not have redundancy; this cannot exclude the flexibility of extension; it's a helper not a replacement.
-Note: `mob_api` will now also take more actions, assuming behavior based on what you've definedl; the mob_on_step function will branch out and do a lot of different functionality, and there would be the possibility of registering or overriding behaviors as well.
+Note: `mob_api` will now also take more actions, assuming behavior based on what you've defined; the `mob_on_step` function in the API will branch out and do a lot of different functionality, and there would be the possibility of registering or overriding behaviors as well.
 ```lua
 mobdef = {
     _behaviors = {
